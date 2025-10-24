@@ -1,0 +1,10 @@
+{
+  "values": [
+    "#minecraft:zombies",
+    "#minecraft:skeletons",
+    "#minecraft:undead",
+    "#minecraft:raiders",
+    "#minecraft:illager",
+    "#c:bosses"
+  ]
+}

@@ -1,0 +1,26 @@
+modLoader="javafml"
+loaderVersion="[4,)"
+issueTrackerURL="https://github.com/Mrbysco/CursedCompass/issues"
+license="MIT"
+
+[[mods]]
+modId="cursedcompass"
+version="${file.jarVersion}"
+displayName="Cursed Compass"
+displayURL="https://www.curseforge.com/minecraft/mc-mods/cursed-compass"
+authors="Mrbysco, ShyNieke"
+description='''
+A compass that points to evil things!
+'''
+[[dependencies.cursedcompass]]
+modId="minecraft"
+type="required"
+versionRange="[1.21,1.22)"
+ordering="NONE"
+side="BOTH"
+[[dependencies.cursedcompass]]
+modId="neoforge"
+type="required"
+versionRange="[21.1.1,)"
+ordering="NONE"
+side="BOTH"
