@@ -17,8 +17,8 @@ public class CursedLootModifier extends LootModifier {
 	public static final Supplier<MapCodec<CursedLootModifier>> CODEC = Suppliers.memoize(() ->
 			RecordCodecBuilder.mapCodec(inst -> codecStart(inst).apply(inst, CursedLootModifier::new)));
 
-	public CursedLootModifier(LootItemCondition[] conditionsIn) {
-		super(conditionsIn);
+	public CursedLootModifier(LootItemCondition[] conditionsIn, int priority) {
+		super(conditionsIn, priority);
 	}
 
 	@Override

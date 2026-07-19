@@ -2,12 +2,14 @@ package com.mrbysco.cursedcompass.item;
 
 import com.mrbysco.cursedcompass.CursedCompass;
 import com.mrbysco.cursedcompass.registry.CursedRegistry;
+import net.minecraft.core.GlobalPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.Level;
+import org.jspecify.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -25,7 +27,7 @@ public class CursedCompassItem extends Item {
 	}
 
 	@Override
-	public void inventoryTick(ItemStack stack, Level level, Entity entity, int slotId, boolean isSelected) {
+	public void inventoryTick(ItemStack stack, ServerLevel level, Entity owner, @Nullable EquipmentSlot slot) {
 		if (level instanceof ServerLevel serverLevel) {
 			if (!stack.has(CursedRegistry.TARGET_ID)) {
 				// Generate random target ID
@@ -38,14 +40,14 @@ public class CursedCompassItem extends Item {
 				entityList = new ArrayList<>(entityList.stream()
 						.filter(foundEntity ->
 								foundEntity instanceof LivingEntity &&
-										foundEntity.getType().is(CursedCompass.TARGETS) &&
-										foundEntity.distanceTo(entity) < 100.0F
+										foundEntity.is(CursedCompass.TARGETS) &&
+										foundEntity.distanceTo(owner) < 100.0F
 						).toList());
 				if (!entityList.isEmpty()) {
 					Collections.shuffle(entityList);
 					Entity targetEntity = entityList.getFirst();
 					stack.set(CursedRegistry.TARGET_ID, targetEntity.getUUID());
-					stack.set(CursedRegistry.TARGET_POS, targetEntity.blockPosition());
+					stack.set(CursedRegistry.TARGET_POS, GlobalPos.of(level.dimension(), targetEntity.blockPosition()));
 				}
 			} else {
 				UUID targetID = stack.get(CursedRegistry.TARGET_ID);
@@ -58,7 +60,7 @@ public class CursedCompassItem extends Item {
 				} else {
 					if (level.dimension().equals(targetEntity.level().dimension())) {
 						// Update target position
-						stack.set(CursedRegistry.TARGET_POS, targetEntity.blockPosition());
+						stack.set(CursedRegistry.TARGET_POS, GlobalPos.of(level.dimension(), targetEntity.blockPosition()));
 					} else {
 						// Clear target if dimension does not match
 						stack.remove(CursedRegistry.TARGET_ID);

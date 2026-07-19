@@ -6,14 +6,12 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.EntityTypeTagsProvider;
 import net.minecraft.tags.EntityTypeTags;
 import net.neoforged.neoforge.common.Tags;
-import net.neoforged.neoforge.common.data.ExistingFileHelper;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.concurrent.CompletableFuture;
 
 public class CursedEntityTypeTagsProvider extends EntityTypeTagsProvider {
-	public CursedEntityTypeTagsProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> provider, @Nullable ExistingFileHelper helper) {
-		super(output, provider, CursedCompass.MOD_ID, helper);
+	public CursedEntityTypeTagsProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> provider) {
+		super(output, provider, CursedCompass.MOD_ID);
 	}
 
 	@Override

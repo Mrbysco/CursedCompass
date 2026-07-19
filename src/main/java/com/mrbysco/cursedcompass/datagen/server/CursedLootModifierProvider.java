@@ -19,18 +19,18 @@ public class CursedLootModifierProvider extends GlobalLootModifierProvider {
 
 	@Override
 	protected void start() {
-		this.add("smelting", new CursedLootModifier(
+		this.add("cursed", new CursedLootModifier(
 				new LootItemCondition[]{
 						AnyOfCondition.anyOf(
-								LootTableIdCondition.builder(BuiltInLootTables.VILLAGE_CARTOGRAPHER.location()),
-								LootTableIdCondition.builder(BuiltInLootTables.TRIAL_CHAMBERS_INTERSECTION_BARREL.location()),
-								LootTableIdCondition.builder(BuiltInLootTables.STRONGHOLD_LIBRARY.location()),
-								LootTableIdCondition.builder(BuiltInLootTables.ANCIENT_CITY.location()),
-								LootTableIdCondition.builder(BuiltInLootTables.SHIPWRECK_MAP.location()),
-								LootTableIdCondition.builder(BuiltInLootTables.SHIPWRECK_SUPPLY.location()),
-								LootTableIdCondition.builder(BuiltInLootTables.SHIPWRECK_TREASURE.location())
+								LootTableIdCondition.builder(BuiltInLootTables.VILLAGE_CARTOGRAPHER.identifier()),
+								LootTableIdCondition.builder(BuiltInLootTables.TRIAL_CHAMBERS_INTERSECTION_BARREL.identifier()),
+								LootTableIdCondition.builder(BuiltInLootTables.STRONGHOLD_LIBRARY.identifier()),
+								LootTableIdCondition.builder(BuiltInLootTables.ANCIENT_CITY.identifier()),
+								LootTableIdCondition.builder(BuiltInLootTables.SHIPWRECK_MAP.identifier()),
+								LootTableIdCondition.builder(BuiltInLootTables.SHIPWRECK_SUPPLY.identifier()),
+								LootTableIdCondition.builder(BuiltInLootTables.SHIPWRECK_TREASURE.identifier())
 						).build()
-				})
+				}, 1000)
 		);
 	}
 }
